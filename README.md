@@ -18,3 +18,11 @@ This web app display the scoreboard and some details of ongoing, upcoming, and f
 The design is optimized for mobile responsive view so some element may appear too large if viewed by dekstop browser.
 
 
+
+How to start: 
+
+1. Made sure that Node.js is installed in your device
+2. Open console command inside the project folder
+3. Type "npm start" in the console
+
+
