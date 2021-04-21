@@ -27,24 +27,32 @@ class Livescore extends React.Component{
        }));
   }
 
-  render(){
-    let dataDisplay = (<Spinner animation="border" role="status" variant="primary">
-                        <span className="sr-only">Loading...</span>
-                       </Spinner>)
+  sortingMatch = (dataTemp) => {
+    // Changing the status number of NotStarted from 1 to 7 for easier sorting
+    // Ongoing match will be displayed first before NotStarted
+    dataTemp = dataTemp.map(item => {
+      let newStatus = item.status === 1 ? 7 : item.status
+      return {...item, status: newStatus}
+    })
+    dataTemp.sort((a,b) => a.status - b.status);
 
+    return dataTemp
+  }
+
+  render(){
+    let dataDisplay
     if(this.state.data.result !== undefined){
-        let dataTemp = this.state.data.result
-        // Changing the status number of NotStarted from 1 to 5 for easier sorting; Ongoing match will be displayed first before NotStarted
-        dataTemp = dataTemp.map(item => {
-          let newStatus = item.status
-          if(newStatus === 1){ newStatus = 7}
-          return {...item, status: newStatus}
-        })
-        dataTemp.sort((a,b) => a.status - b.status);
+        let dataTemp = this.sortingMatch(this.state.data.result)
 
         dataDisplay = dataTemp.map( (item, index) => {
             return <Match key={index} matchData={item} />
         })
+    }else{
+        dataDisplay = (
+          <Spinner animation="border" role="status" variant="primary">
+              <span className="sr-only">Loading...</span>
+          </Spinner>
+        )
     }
 
     return(

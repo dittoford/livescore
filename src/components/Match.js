@@ -16,7 +16,6 @@ class Match extends React.Component{
       score: "",
       detailMatch: []
     }
-    //this.handleChange = this.handleChange.bind(this)
   }
 
   handleChange = () => {
@@ -48,12 +47,10 @@ class Match extends React.Component{
 
     let timeStart = matchData.matchTime.split("T")
     let timeCurrent = matchData.teeTime.split("T")
-
     let timeStartParse = timeStart[1].split(":")
     let timeCurrentParse = timeCurrent[1].split(":")
+    let timeMinutes = (parseInt(timeCurrentParse[0]) * 60 + parseInt(timeCurrentParse[1])) - (parseInt(timeStartParse[0]) * 60 + parseInt(timeStartParse[1]));
 
-    let timeMinutes = ""
-    timeMinutes = (parseInt(timeCurrentParse[0]) * 60 + parseInt(timeCurrentParse[1])) - (parseInt(timeStartParse[0]) * 60 + parseInt(timeStartParse[1]));
     this.setState({
       matchData: this.props.matchData,
       homeTeamEvent: this.props.matchData.homeTeamEvent,

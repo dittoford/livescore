@@ -52,7 +52,7 @@ class Details extends React.Component{
           }
           return null
         })
-        load = ""
+        load = homePossesion === undefined ? <p>No Match Data</p> : ""
     }
 
     return(
