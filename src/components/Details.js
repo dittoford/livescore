@@ -5,9 +5,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
 class Details extends React.Component{
   constructor(props){
     super(props)
-    this.state = {
-
-    }
+    
   }
 
   render(){
